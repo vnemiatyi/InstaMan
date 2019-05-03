@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class BGSpawner : MonoBehaviour {
@@ -23,8 +24,8 @@ public class BGSpawner : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Background") {
-			if(target.transform.position.y == lastY) {
+		if (target.CompareTag("Background")) {
+			if(Math.Abs(target.transform.position.y - lastY) < 0.001f) {
 				Vector3 temp = target.transform.position;
 
 				float height = ((BoxCollider2D)target).size.y;

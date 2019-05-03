@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerScore : MonoBehaviour {
 
@@ -40,7 +39,7 @@ public class PlayerScore : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
-		if (target.tag == "Coin") {
+		if (target.CompareTag("Coin")) {
 			coinCount++;
 			scoreCount += 200;
 
@@ -51,7 +50,7 @@ public class PlayerScore : MonoBehaviour {
 			target.gameObject.SetActive (false);
 		}
 		
-		if (target.tag == "Life") {
+		if (target.CompareTag("Life")) {
 			lifeCount++;
 			scoreCount += 300;
 
@@ -62,20 +61,23 @@ public class PlayerScore : MonoBehaviour {
 			target.gameObject.SetActive (false);
 		}
 		
-		if (target.tag == "Bounds") {
+		if (target.CompareTag("Bounds")) {
 			cameraScript.moveCamera = false;
 			countScore = false;
 			transform.position = new Vector3(500, 500, 0);
 			lifeCount--;
-			GameManager.instance.CheckGameStatus(scoreCount, coinCount, lifeCount);
+			if (GameManager.instance)
+				GameManager.instance.CheckGameStatus(scoreCount, coinCount, lifeCount);
 		}
 		
-		if (target.tag == "Deadly") {
+		if (target.CompareTag("Deadly")) {
 			cameraScript.moveCamera = false;
 			countScore = false;
 			transform.position = new Vector3(500, 500, 0);
 			lifeCount--;
-			GameManager.instance.CheckGameStatus(scoreCount, coinCount, lifeCount);
+			
+			if (GameManager.instance)
+			  GameManager.instance.CheckGameStatus(scoreCount, coinCount, lifeCount);
 		}
 	}
 

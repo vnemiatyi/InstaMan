@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameplayController : MonoBehaviour {
 
@@ -75,7 +76,7 @@ public class GameplayController : MonoBehaviour {
 
 	public void QuitGame() {
 		Time.timeScale = 1f;
-		Application.LoadLevel ("MainMenu");
+		SceneManager.LoadScene ("MainMenu");
 //		SceneFader.instance.LoadLevel ("MainMenu");
 	}
 

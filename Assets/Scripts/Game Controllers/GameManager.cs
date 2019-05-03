@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,10 +20,22 @@ public class GameManager : MonoBehaviour {
 		InitializeGame ();
 	}
 
-	void OnLevelWasLoaded() {
-		if (Application.loadedLevelName == "Gameplay") {
+	private void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
 
-			if(gameRestartedAfterPlayerDied) {
+	private void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+
+	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+	{
+		if (SceneManager.GetSceneByName("Gameplay").isLoaded) 
+		{
+			if(gameRestartedAfterPlayerDied) 
+			{
 				GameplayController.instance.SetScore(score);
 				GameplayController.instance.SetLifeScore(lifeScore);
 				GameplayController.instance.SetCoinScore(coinScore);
@@ -31,7 +44,9 @@ public class GameManager : MonoBehaviour {
 				PlayerScore.scoreCount = score;
 				PlayerScore.lifeCount = lifeScore;
 
-			} else if(gameStartedFromMainMenu) {
+			} 
+			else if(gameStartedFromMainMenu) 
+			{
 				PlayerScore.coinCount = 0;
 				PlayerScore.scoreCount = 0;
 				PlayerScore.lifeCount = 2;
@@ -39,9 +54,7 @@ public class GameManager : MonoBehaviour {
 				GameplayController.instance.SetScore(0);
 				GameplayController.instance.SetLifeScore(2);
 				GameplayController.instance.SetCoinScore(0);
-
 			}
-
 		}
 	}
 

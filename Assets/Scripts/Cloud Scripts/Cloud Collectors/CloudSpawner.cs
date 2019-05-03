@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class CloudSpawner : MonoBehaviour {
 	
@@ -133,10 +135,9 @@ public class CloudSpawner : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D target) {
-		
-		if (target.tag == "Deadly" || target.tag == "Cloud") {
+		if (target.CompareTag("Deadly") || target.CompareTag("Cloud")) {
 			
-			if(target.transform.position.y == lastCloudPositionY) {
+			if(Math.Abs(target.transform.position.y - lastCloudPositionY) < 0.001f) {
 				
 				Vector3 temp = target.transform.position;
 				Shuffle(clouds);
@@ -177,11 +178,11 @@ public class CloudSpawner : MonoBehaviour {
 						
 						int random = Random.Range(0, collectables.Length);
 						
-						if(clouds[i].tag != "Deadly") {
+						if(!clouds[i].CompareTag("Deadly")) {
 							
 							if(!collectables[random].activeInHierarchy) {
 								
-								if(collectables[random].tag == "Life") {
+								if(collectables[random].CompareTag("Life")) {
 									
 									if(PlayerScore.lifeCount < 2) {
 										collectables[random].SetActive(true);

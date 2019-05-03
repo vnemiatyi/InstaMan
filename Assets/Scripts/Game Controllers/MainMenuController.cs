@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
 
@@ -32,11 +33,11 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void HighScoreMenu() {
-		Application.LoadLevel ("HighscoreMenu");
+		SceneManager.LoadScene ("HighscoreMenu");
 	}
 
 	public void OptionsMenu() {
-		Application.LoadLevel ("OptionsMenu");
+		SceneManager.LoadScene ("OptionsMenu");
 	}
 
 	public void QuitGame() {
