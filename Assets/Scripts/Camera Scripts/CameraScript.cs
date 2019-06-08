@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Diagnostics;
 
 
 public enum Mode
@@ -21,11 +22,13 @@ public class CameraScript : MonoBehaviour {
 	private float easySpeed = 3.2f;
 	private float mediumSpeed = 3.7f;
 	private float hardSpeed = 4.2f;
+	Stopwatch stopwatch = new Stopwatch();
 
 	[SerializeField]
 	private Transform _player;
 
 	private int _mode = 0;
+	private Vector2 _playerSize;
 	
 	void Start () {
 
@@ -42,6 +45,8 @@ public class CameraScript : MonoBehaviour {
 		}
 
 		moveCamera = true;
+
+		_playerSize = _player.GetComponent<CapsuleCollider2D>().size;
 	}
 
 	void Update ()
@@ -73,17 +78,18 @@ public class CameraScript : MonoBehaviour {
 
 	float NewCameraY(float posY)
 	{
-		switch (_mode)
-		{
-			case (int) Mode.Easy:
-				return _player.position.y;
-			case (int) Mode.Medium:
-				return _player.position.y;
-			case (int) Mode.Hard:
-				return posY - (speed * Time.deltaTime);
-			default:
-				return _player.position.y;
-		}
+		return _player.position.y; // - _playerSize.y;
+//		switch (_mode)
+//		{
+//			case (int) Mode.Easy:
+//				return _player.position.y - _playerSize.y;
+//			case (int) Mode.Medium:
+//				return _player.position.y - _playerSize.y;
+//			case (int) Mode.Hard:
+//				return posY - (speed * Time.deltaTime);
+//			default:
+//				return _player.position.y - _playerSize.y;
+//		}
 	}
 } // CameraScript
 

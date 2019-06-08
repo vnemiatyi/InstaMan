@@ -9,7 +9,7 @@ public class BGSpawner : MonoBehaviour {
 	private float lastY;
 
 	void Start () {
-		GetBackgroundsAndSetLastY ();
+		//GetBackgroundsAndSetLastY ();
 	}
 
 	void GetBackgroundsAndSetLastY() {
