@@ -12,6 +12,16 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector]
 	public int score, coinScore, lifeScore;
 
+	private static float _scaleDefault = 0.7f;
+	private const float _scaleBuff = 0.2f;
+	private static float _scaleCurrent = _scaleDefault;
+
+	public float PlayerScale
+	{
+		set => _scaleCurrent = value;
+		get => _scaleCurrent;
+	}
+
 	void Awake () {
 		MakeSingleton ();
 	}
@@ -152,9 +162,19 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public void ScaleReset()
+	{
+		instance.PlayerScale = _scaleDefault;
+	}
+	
+	public void ScaleBuff()
+	{
+		instance.PlayerScale = _scaleBuff;
+	}
+
 } // GameManager
 
-
+		
 
 
 

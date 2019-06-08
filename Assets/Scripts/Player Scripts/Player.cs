@@ -26,9 +26,7 @@ public class Player : MonoBehaviour {
 			if (vel < maxVelocity)
 				forceX = speed;
 
-			Vector3 temp = transform.localScale;
-			temp.x = 0.7f;
-			transform.localScale = temp;
+			PlayerScale();
 
 			anim.SetBool ("Walk", true);
 
@@ -37,9 +35,7 @@ public class Player : MonoBehaviour {
 			if (vel < maxVelocity)
 				forceX = -speed;
 			
-			Vector3 temp = transform.localScale;
-			temp.x = -0.7f;
-			transform.localScale = temp;
+			PlayerScale(-1);
 			
 			anim.SetBool ("Walk", true);
 
@@ -49,11 +45,22 @@ public class Player : MonoBehaviour {
 
 		myBody.AddForce (new Vector2(forceX, 0));
 
+		var keyDown = Input.GetKey(KeyCode.Tab);
+		if (keyDown)
+		{
+			GameManager.instance.ScaleReset();
+			PlayerScale();
+			Debug.Log("Press Tab");
+		}
 	}
 
-	public void PlayerAction()
+	void PlayerScale(int side = 1)
 	{
-		anim.SetBool("Flash", true);
+		Vector3 temp = transform.localScale;
+		temp.x = side * GameManager.instance.PlayerScale;
+		temp.y = GameManager.instance.PlayerScale;
+			
+		transform.localScale = temp;
 	}
 
 } // Player
