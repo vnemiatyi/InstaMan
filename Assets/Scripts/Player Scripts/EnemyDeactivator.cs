@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -7,6 +7,7 @@ namespace Player_Scripts
   public class EnemyDeactivator : MonoBehaviour
   {
     private Animator _playerAnimator;
+    [SerializeField] private GameObject _flash; 
 
     void Awake() => _playerAnimator = GetComponent<Animator> ();
     
@@ -16,7 +17,19 @@ namespace Player_Scripts
       {
         _playerAnimator.SetBool("Flash", true);
         other.gameObject.SetActive(false);
+        _flash.SetActive(true);
+        
+        StartCoroutine(FlashBlip());
       }
+    }
+
+    IEnumerator FlashBlip()
+    {
+      yield return new WaitForSeconds(0.2f);
+      
+      _playerAnimator.SetBool("Walk", true);
+      _flash.SetActive(false);
+      
     }
   }
 }
