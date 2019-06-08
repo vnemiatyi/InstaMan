@@ -41,15 +41,13 @@ public class InstagramManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(newLikesCounter);
-;        if (newLikesCounter > 0) {
+;        if (newLikesCounter == 1) {
             if (Input.GetKeyUp(KeyCode.F))
             {
                 newLikesCounter -= manaPoints;
-                Debug.Log(newLikesCounter);
                 manabar.value = newLikesCounter;
             }
-        } else if (newLikesCounter <= 0) {
+        } else if (newLikesCounter != 1 || newLikesCounter > 1) {
             ++cnt;
 
             if (cnt >= step)
@@ -147,6 +145,7 @@ public class InstagramManager : MonoBehaviour
                 currentLikesCounter = Mathf.Round(likes);
                 newLikesCounter = (currentLikesCounter - likesCounter) * likeValue;
                 Debug.Log(newLikesCounter);
+                manabar.value = newLikesCounter;
             }
         }
     }
