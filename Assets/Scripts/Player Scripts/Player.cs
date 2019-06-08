@@ -11,10 +11,6 @@ public class Player : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 	}
 
-	void Start () {
-	
-	}
-
 	void FixedUpdate () {
 		PlayerWalkKeyboard ();
 	}
@@ -31,7 +27,7 @@ public class Player : MonoBehaviour {
 				forceX = speed;
 
 			Vector3 temp = transform.localScale;
-			temp.x = 1f;
+			temp.x = 0.7f;
 			transform.localScale = temp;
 
 			anim.SetBool ("Walk", true);
@@ -42,7 +38,7 @@ public class Player : MonoBehaviour {
 				forceX = -speed;
 			
 			Vector3 temp = transform.localScale;
-			temp.x = -1f;
+			temp.x = -0.7f;
 			transform.localScale = temp;
 			
 			anim.SetBool ("Walk", true);
@@ -53,6 +49,11 @@ public class Player : MonoBehaviour {
 
 		myBody.AddForce (new Vector2(forceX, 0));
 
+	}
+
+	public void PlayerAction()
+	{
+		anim.SetBool("Flash", true);
 	}
 
 } // Player
