@@ -10,7 +10,14 @@ namespace Player_Scripts
     [SerializeField] private BoxCollider2D _platformBoxCollider;
     [SerializeField] private Transform _platformPosition;
     
+    [HideInInspector] private AudioSource _audioSource;
     [HideInInspector] private bool _isTrapAcive = true;
+
+    private void Awake()
+    {
+      _audioSource = GetComponent<AudioSource>();
+    }
+
     private void FixedUpdate()
     {
       var keyDown = Input.GetKey(KeyCode.Tab);
@@ -19,6 +26,8 @@ namespace Player_Scripts
         _isTrapAcive = false;
         Debug.Log("Trap deactivated!");
 
+        _audioSource.Play();
+        
         ChangePlatform();
         
         StartCoroutine(ChangePlayer());
@@ -41,7 +50,7 @@ namespace Player_Scripts
       yield return new WaitForEndOfFrame();
       
       var playerPosition = _player.localPosition;
-      playerPosition.y += 1;
+      playerPosition.y += 0.3f;
       _player.localPosition = playerPosition;
     }
   }

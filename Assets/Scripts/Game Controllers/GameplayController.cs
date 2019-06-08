@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,8 @@ public class GameplayController : MonoBehaviour {
 	}
 
 	void Start() {
-		Time.timeScale = 0f;
+		//Time.timeScale = 0f;
+		StartTheGame();
 	}
 
 	void MakeInstance() {

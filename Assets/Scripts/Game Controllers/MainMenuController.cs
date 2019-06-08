@@ -30,6 +30,8 @@ public class MainMenuController : MonoBehaviour {
 		GameManager.instance.gameStartedFromMainMenu = true;
 //		Application.LoadLevel ("Gameplay");
 		SceneFader.instance.LoadLevel ("Gameplay");
+		
+		TurnMusicOn();
 	}
 
 	public void HighScoreMenu() {
@@ -42,6 +44,11 @@ public class MainMenuController : MonoBehaviour {
 
 	public void QuitGame() {
 		Application.Quit ();
+	}
+
+	public void TurnMusicOn()
+	{
+		MusicController.instance.PlayMusic (true);
 	}
 
 	public void TurnMusicOnOrOff() {
