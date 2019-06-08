@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -15,12 +16,12 @@ namespace Player_Scripts
       var keyDown = Input.GetKey(KeyCode.Tab);
       if (keyDown && _isTrapAcive)
       {
+        _isTrapAcive = false;
         Debug.Log("Trap deactivated!");
 
         ChangePlatform();
-        ChangePlatform();
         
-        _isTrapAcive = false;
+        StartCoroutine(ChangePlayer());
       }
     }
 
@@ -35,8 +36,10 @@ namespace Player_Scripts
       _platformPosition.localPosition = platformPosition;
     }
 
-    void ChangePlayer()
+    IEnumerator ChangePlayer()
     {
+      yield return new WaitForEndOfFrame();
+      
       var playerPosition = _player.localPosition;
       playerPosition.y += 1;
       _player.localPosition = playerPosition;
