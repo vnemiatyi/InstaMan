@@ -22,9 +22,9 @@ namespace Player_Scripts
       {
         _playerAnimator.SetBool("Flash", true);
         other.gameObject.SetActive(false);
-        _flash.SetActive(true);
         
         _audioSource.Play();
+        _flash.SetActive(true);
         
         StartCoroutine(FlashBlip());
       }
