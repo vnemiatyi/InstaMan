@@ -43,23 +43,30 @@ public class InstagramManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (newLikesCounter == 1) {
+        if (newLikesCounter >= 1) 
+        {
             if (Input.GetKeyUp(KeyCode.Space))
             {
-//                newLikesCounter -= manaPoints;
-//                manabar.value = newLikesCounter;
+                newLikesCounter -= manaPoints;
+                manabar.value = newLikesCounter;
 
                 DebuffPlayer();
             }
-        } else if (newLikesCounter != 1) {
-//            ++cnt;
-//
-//            if (cnt >= step)
-//            {
-//                Debug.Log("Calling API...");
-//                StartCoroutine(GetLikesOnUpdate(URL + apiToken));
-//                cnt = 0;
-//            }
+
+        } else if (newLikesCounter < 1) {
+            ++cnt;
+
+            if (cnt >= step)
+            {
+                Debug.Log("Calling API...");
+                StartCoroutine(GetLikesOnUpdate(URL + apiToken));
+                cnt = 0;
+            }
+        }
+        
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            DebuffPlayer();
         }
     }
 
