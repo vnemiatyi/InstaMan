@@ -319,4 +319,6 @@
 "Assets/Scripts/Player Scripts/Player.cs"
 "Assets/Scripts/Player Scripts/PlayerBounds.cs"
 "Assets/Scripts/Player Scripts/PlayerScore.cs"
+"Assets/Scripts/Player Scripts/TrapActivator.cs"
+"Assets/Scripts/Player Scripts/TrapDeactivator.cs"
 "Assets/Scripts/Scene Fader/SceneFader.cs"

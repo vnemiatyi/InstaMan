@@ -47,7 +47,7 @@ public class InstagramManager : MonoBehaviour
                 newLikesCounter -= manaPoints;
                 manabar.value = newLikesCounter;
             }
-        } else if (newLikesCounter != 1 || newLikesCounter > 1) {
+        } else if (newLikesCounter != 1) {
             ++cnt;
 
             if (cnt >= step)
@@ -57,14 +57,6 @@ public class InstagramManager : MonoBehaviour
                 cnt = 0;
             }
         }
-
-        //++cnt;
-        ////Debug.Log(likesCounter);
-        //if (cnt >= step) {
-        //    StartCoroutine(GetLikesOnUpdate(URL + apiToken));
-        //    Debug.Log("Call!!!!");
-        //    cnt = 0;
-        //}
     }
 
 
@@ -144,8 +136,8 @@ public class InstagramManager : MonoBehaviour
                 int likes = post.likes.count;
                 currentLikesCounter = Mathf.Round(likes);
                 newLikesCounter = (currentLikesCounter - likesCounter) * likeValue;
-                Debug.Log(newLikesCounter);
                 manabar.value = newLikesCounter;
+                //likesCounter = currentLikesCounter;
             }
         }
     }
