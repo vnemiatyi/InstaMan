@@ -7,17 +7,13 @@ namespace Player_Scripts
   public class EnemyDeactivator : MonoBehaviour
   {
     [HideInInspector] private Animator _playerAnimator;
-    [HideInInspector] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private GameObject _flash;
-        [SerializeField] private FinalScoreController finalScoreController;
-        private int counter;
+    private int counter;
 
     void Awake()
     {
-      _audioSource = _flash.GetComponent<AudioSource> ();
       _playerAnimator = GetComponent<Animator>();
-            counter = 0;
-            GameplayController.instance.SetPhotoScore(counter);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -33,9 +29,8 @@ namespace Player_Scripts
         StartCoroutine(FlashBlip());
 
                
-                counter++;
-                GameplayController.instance.SetPhotoScore(counter);
-                finalScoreController.SetFinalScore(counter);
+        counter++;
+        GameplayController.instance.SetPhotoScore(counter);
       }
     }
 
