@@ -45,17 +45,17 @@ public class Player : MonoBehaviour {
 
 		myBody.AddForce (new Vector2(forceX, 0));
 
-		var keyDown = Input.GetKey(KeyCode.Tab);
-		if (keyDown)
+		var keyUp = Input.GetKeyUp(KeyCode.Space);
+		if (keyUp)
 		{
 			GameManager.instance.ScaleReset();
 			PlayerScale();
-			Debug.Log("Press Tab");
 		}
 	}
 
 	void PlayerScale(int side = 1)
 	{
+		
 		Vector3 temp = transform.localScale;
 		temp.x = side * GameManager.instance.PlayerScale;
 		temp.y = GameManager.instance.PlayerScale;

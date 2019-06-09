@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Player_Scripts
@@ -7,9 +5,9 @@ namespace Player_Scripts
   public class TrapDeactivator : MonoBehaviour
   {
     [SerializeField] private Transform _player;
-    
+    [SerializeField] private int _trapId;
     [HideInInspector] private AudioSource _audioSource;
-    [HideInInspector] private bool _isTrapAcive = true;
+    
 
     private void Awake()
     {
@@ -18,20 +16,18 @@ namespace Player_Scripts
 
     private void FixedUpdate()
     {
-      var keyDown = Input.GetKey(KeyCode.Tab);
-      if (keyDown && _isTrapAcive)
-      {
-        _isTrapAcive = false;
-        Debug.Log("Trap deactivated!");
-
-        _audioSource.Play();
-        
-        ChangePlayer();
-      }
+//      var keyUp = Input.GetKeyUp(KeyCode.Space);
+//      if (keyUp)
+//      {
+//        _audioSource.Play();
+//        
+//        ChangePlayer();
+//      }
     }
 
     void ChangePlayer()
     {
+      Debug.Log("Trap deactivated!");
       var playerPosition = _player.localPosition;
       playerPosition.y += 0.3f;
       _player.localPosition = playerPosition;

@@ -41,7 +41,7 @@ public class InstagramManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-;        if (newLikesCounter == 1) {
+        if (newLikesCounter == 1) {
             if (Input.GetKeyUp(KeyCode.F))
             {
                 newLikesCounter -= manaPoints;
