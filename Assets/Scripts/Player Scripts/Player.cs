@@ -44,13 +44,7 @@ public class Player : MonoBehaviour {
 		}
 
 		myBody.AddForce (new Vector2(forceX, 0));
-
-		var keyUp = Input.GetKeyUp(KeyCode.Space);
-		if (keyUp)
-		{
-			GameManager.instance.ScaleReset();
-			PlayerScale();
-		}
+		
 	}
 
 	void PlayerScale(int side = 1)

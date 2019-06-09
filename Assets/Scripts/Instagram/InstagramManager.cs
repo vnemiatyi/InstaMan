@@ -27,6 +27,8 @@ public class InstagramManager : MonoBehaviour
     [SerializeField]
     private Slider manabar;
 
+    [SerializeField] private Transform _player;
+
     private void Awake()
     {
         StartCoroutine(GetRequest(URL + apiToken));
@@ -44,22 +46,37 @@ public class InstagramManager : MonoBehaviour
         if (newLikesCounter == 1) {
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                newLikesCounter -= manaPoints;
-                manabar.value = newLikesCounter;
+//                newLikesCounter -= manaPoints;
+//                manabar.value = newLikesCounter;
+
+                DebuffPlayer();
             }
         } else if (newLikesCounter != 1) {
-            ++cnt;
-
-            if (cnt >= step)
-            {
-                Debug.Log("Calling API...");
-                StartCoroutine(GetLikesOnUpdate(URL + apiToken));
-                cnt = 0;
-            }
+//            ++cnt;
+//
+//            if (cnt >= step)
+//            {
+//                Debug.Log("Calling API...");
+//                StartCoroutine(GetLikesOnUpdate(URL + apiToken));
+//                cnt = 0;
+//            }
         }
     }
 
-
+    private void DebuffPlayer()
+    {
+        GameManager.instance.ScaleReset();
+        
+        var playerPosition = _player.localPosition;
+        playerPosition.y += 0.3f;
+        _player.localPosition = playerPosition;
+        
+        var temp = _player.localScale;
+        temp.x = GameManager.instance.PlayerScale;
+        temp.y = GameManager.instance.PlayerScale;
+			
+        _player.localScale = temp;
+    }
 
     // Calls Instagram API and gets data of recent posts
     private IEnumerator GetRequest(string uri)
