@@ -8,9 +8,9 @@ namespace Game_Controllers
     public static TrapsSoundController instance;
     
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private List<AudioClip> _trapsSoundsCollection;
 
-    [SerializeField]
-    private List<AudioClip> _trapsSoundsCollection;
+    
     
     void Awake () {
       MakeSingleton ();
@@ -27,14 +27,12 @@ namespace Game_Controllers
     
     private void FixedUpdate()
     {
-      var keyUp = Input.GetKeyDown(KeyCode.Space);
-      if (keyUp)
-      {
-        //var clip = (AudioClip) Resources.Load("Sounds/buff", typeof(AudioClip));
-        //_audioSource.clip = clip;
-        _audioSource.clip = _trapsSoundsCollection[Random.Range(0, 5)];
-        _audioSource.Play();
-      }
+//      var keyUp = Input.GetKeyDown(KeyCode.Space);
+//      if (keyUp)
+//      {
+//        _audioSource.clip = _trapsSoundsCollection[0];
+//        _audioSource.Play();
+//      }
     }
   }
 }

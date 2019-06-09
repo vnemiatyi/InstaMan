@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class TrapActivator : MonoBehaviour
 {
-    [HideInInspector] private AudioSource _audioSource;
-
-    private void Awake()
-    {
-      _audioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField] private AudioSource _audioSource;
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -42,7 +42,7 @@ public class InstagramManager : MonoBehaviour
     void Update()
     {
         if (newLikesCounter == 1) {
-            if (Input.GetKeyUp(KeyCode.F))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 newLikesCounter -= manaPoints;
                 manabar.value = newLikesCounter;

@@ -5,7 +5,6 @@ namespace Player_Scripts
   public class TrapDeactivator : MonoBehaviour
   {
     [SerializeField] private Transform _player;
-    [SerializeField] private int _trapId;
     [HideInInspector] private AudioSource _audioSource;
     
 
