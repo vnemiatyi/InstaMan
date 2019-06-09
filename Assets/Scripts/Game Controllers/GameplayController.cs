@@ -9,7 +9,7 @@ public class GameplayController : MonoBehaviour {
 	public static GameplayController instance;
 
 	[SerializeField]
-	private Text scoreText, lifeScore, coinScore, gameOverScoreText, gameOverCoinScoreText;
+	private Text scoreText, lifeScore, photoScore, coinScore, gameOverScoreText, gameOverCoinScoreText;
 
 	[SerializeField]
 	private GameObject pausePanel, gameOverPanel;
@@ -17,9 +17,14 @@ public class GameplayController : MonoBehaviour {
 	[SerializeField]
 	private GameObject readyButton;
 
+    [SerializeField]
+    public int photoCounter;
+
 	void Awake () {
 		MakeInstance ();
-//		Time.timeScale = 0f;
+        //		Time.timeScale = 0f;
+        photoCounter = 0;
+        SetPhotoScore(photoCounter);
 	}
 
 	void Start() {
@@ -32,6 +37,10 @@ public class GameplayController : MonoBehaviour {
 			instance = this;
 		}
 	}
+
+    public void SetPhotoScore(int scoreCounter) {
+        photoScore.text = "" + scoreCounter;
+    }
 
 	public void SetScore(int score) {
 		scoreText.text = "" + score;

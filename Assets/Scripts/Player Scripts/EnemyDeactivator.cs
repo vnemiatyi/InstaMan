@@ -9,11 +9,15 @@ namespace Player_Scripts
     [HideInInspector] private Animator _playerAnimator;
     [HideInInspector] private AudioSource _audioSource;
     [SerializeField] private GameObject _flash;
+    //[SerializeField] private GameplayController gameplayController;
+        private int counter;
 
     void Awake()
     {
       _audioSource = _flash.GetComponent<AudioSource> ();
       _playerAnimator = GetComponent<Animator>();
+            counter = 0;
+            GameplayController.instance.SetPhotoScore(counter);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,6 +31,10 @@ namespace Player_Scripts
         _flash.SetActive(true);
         
         StartCoroutine(FlashBlip());
+
+               
+                counter++;
+                GameplayController.instance.SetPhotoScore(counter);
       }
     }
 
