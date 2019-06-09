@@ -9,7 +9,7 @@ namespace Player_Scripts
     [HideInInspector] private Animator _playerAnimator;
     [HideInInspector] private AudioSource _audioSource;
     [SerializeField] private GameObject _flash;
-    //[SerializeField] private GameplayController gameplayController;
+        [SerializeField] private FinalScoreController finalScoreController;
         private int counter;
 
     void Awake()
@@ -35,6 +35,7 @@ namespace Player_Scripts
                
                 counter++;
                 GameplayController.instance.SetPhotoScore(counter);
+                finalScoreController.SetFinalScore(counter);
       }
     }
 
